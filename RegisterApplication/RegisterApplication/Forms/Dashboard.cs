@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RegisterApplication.objects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace RegisterApplication
 {
     public partial class Dashboard : Form
     {
-        public Dashboard()
+        public Dashboard(RegisterApplication.objects.Staff loginStaff)
         {
             InitializeComponent();
         }

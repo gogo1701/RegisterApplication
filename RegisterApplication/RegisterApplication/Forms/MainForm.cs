@@ -5,10 +5,7 @@ namespace RegisterApplication
 {
     public partial class MainForm : Form
     {
-
-        BindingSource productsBindingSources = new BindingSource();
-
-        List<Product> products = new List<Product>();
+        StaffDAO staffDAO = new StaffDAO();
         public MainForm()
         {
             InitializeComponent();
@@ -16,11 +13,17 @@ namespace RegisterApplication
 
         private void button1_Click(object sender, EventArgs e)
         {
-           ProductsDAO productsDAO = new ProductsDAO();
+            if (staffDAO.doesStaffExist(usernameTextBox.Text, passwordTextBox.Text))
+            {
 
-            products = productsDAO.getAllProducts();
-            productsBindingSources.DataSource = products;
-            dataGridView1.DataSource = productsBindingSources;
+                Staff loginStaff = staffDAO.getStaffByName(usernameTextBox.Text);
+                Dashboard form = new Dashboard(loginStaff);
+                form.Show();
+
+            }
         }
+
+
+
     }
 }
