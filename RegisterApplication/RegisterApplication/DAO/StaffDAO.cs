@@ -121,44 +121,75 @@ namespace RegisterApplication.DAO
             }
          //   return staff;
         }
-        public bool doesStaffExist(string username, string password)
+        public bool doesStaffExist(string username)
         {
-            Staff staff = new Staff();
+            Staff staff = null;
 
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
-
-            MySqlCommand command = new MySqlCommand("SELECT * FROM staff WHERE FIRST_NAME = @search", connection);
-            command.Parameters.AddWithValue("@search", username.ToString());
-            command.Connection = connection;
-
-            using (MySqlDataReader reader = command.ExecuteReader())
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                while (reader.Read())
-                {
-                    Staff a = new Staff
-                    {
-                        ID = reader.GetInt32(0),
-                        Name = reader.GetString(1),
-                        TypeStaff = reader.GetString(2)
-                    };
+                connection.Open();
 
-                    staff = a;
+                MySqlCommand command = new MySqlCommand("SELECT * FROM staff WHERE FIRST_NAME = @search", connection);
+                command.Parameters.AddWithValue("@search", username);
+
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read()) 
+                    {
+                        staff = new Staff
+                        {
+                            ID = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Password = reader.GetString(2),
+                            TypeStaff = reader.GetString(3)
+                        };
+                    }
                 }
             }
-            connection.Close();
 
-            if (staff != null)
+            return staff != null;
+        }
+        public bool checkPassword(string username, string password)
+        {
+            Staff staff = null;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                return true;
+                connection.Open();
+
+                MySqlCommand command = new MySqlCommand("SELECT * FROM staff WHERE FIRST_NAME = @search", connection);
+                command.Parameters.AddWithValue("@search", username);
+
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        staff = new Staff
+                        {
+                            ID = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Password = reader.GetString(2),
+                            TypeStaff = reader.GetString(3)
+                        };
+                    }
+                }
             }
-            else
+
+            if(staff == null)
             {
                 return false;
             }
-            //   return staff;
+            else
+            {
+                if(staff.Password == password)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
-
     }
-   
 }
