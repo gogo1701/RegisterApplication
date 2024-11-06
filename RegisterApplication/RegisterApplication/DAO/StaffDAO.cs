@@ -127,7 +127,14 @@ namespace RegisterApplication.DAO
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                connection.Open();
+                try
+                {
+                    connection.Open();
+                }
+                catch
+                {
+                    return false;
+                }
 
                 MySqlCommand command = new MySqlCommand("SELECT * FROM staff WHERE FIRST_NAME = @search", connection);
                 command.Parameters.AddWithValue("@search", username);

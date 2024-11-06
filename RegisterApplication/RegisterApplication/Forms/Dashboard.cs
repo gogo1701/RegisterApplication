@@ -13,6 +13,7 @@ namespace RegisterApplication
 {
     public partial class Dashboard : Form
     {
+        Staff loginedStaff = new Staff();
         public void EnterFullScreenMode(Form targetForm)
         {
             targetForm.WindowState = FormWindowState.Normal;
@@ -31,6 +32,8 @@ namespace RegisterApplication
             EnterFullScreenMode(this);
             welcomeMessageLabel.Text = "Hello, " + loginStaff.Name;
 
+            loginedStaff = loginStaff;
+
             if(loginStaff.TypeStaff == "Manager")
             {
                 managerButton.Enabled = true;
@@ -39,6 +42,8 @@ namespace RegisterApplication
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Register form = new Register(managerButton.Enabled, loginedStaff.Name);
+            form.Show();
         }
 
         private void label1_Click(object sender, EventArgs e)
