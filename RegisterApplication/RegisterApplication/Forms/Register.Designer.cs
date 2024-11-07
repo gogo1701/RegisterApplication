@@ -47,8 +47,8 @@
             button13 = new Button();
             button14 = new Button();
             button15 = new Button();
-            label3 = new Label();
-            label4 = new Label();
+            CurrentPriceLabel = new Label();
+            ProductNameLabel = new Label();
             button16 = new Button();
             ((System.ComponentModel.ISupportInitialize)currentOrder).BeginInit();
             SuspendLayout();
@@ -232,6 +232,7 @@
             button13.TabIndex = 17;
             button13.Text = "E";
             button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
             // 
             // button14
             // 
@@ -256,25 +257,25 @@
             button15.UseVisualStyleBackColor = true;
             button15.Click += button15_Click;
             // 
-            // label3
+            // CurrentPriceLabel
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 24F);
-            label3.Location = new Point(1087, 963);
-            label3.Name = "label3";
-            label3.Size = new Size(180, 45);
-            label3.TabIndex = 19;
-            label3.Text = "Price: $0.00";
+            CurrentPriceLabel.AutoSize = true;
+            CurrentPriceLabel.Font = new Font("Segoe UI", 24F);
+            CurrentPriceLabel.Location = new Point(1087, 963);
+            CurrentPriceLabel.Name = "CurrentPriceLabel";
+            CurrentPriceLabel.Size = new Size(180, 45);
+            CurrentPriceLabel.TabIndex = 19;
+            CurrentPriceLabel.Text = "Price: $0.00";
             // 
-            // label4
+            // ProductNameLabel
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 24F);
-            label4.Location = new Point(322, 963);
-            label4.Name = "label4";
-            label4.Size = new Size(232, 45);
-            label4.TabIndex = 20;
-            label4.Text = "Product Name:";
+            ProductNameLabel.AutoSize = true;
+            ProductNameLabel.Font = new Font("Segoe UI", 24F);
+            ProductNameLabel.Location = new Point(322, 963);
+            ProductNameLabel.Name = "ProductNameLabel";
+            ProductNameLabel.Size = new Size(232, 45);
+            ProductNameLabel.TabIndex = 20;
+            ProductNameLabel.Text = "Product Name:";
             // 
             // button16
             // 
@@ -293,8 +294,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
             Controls.Add(button16);
-            Controls.Add(label4);
-            Controls.Add(label3);
+            Controls.Add(ProductNameLabel);
+            Controls.Add(CurrentPriceLabel);
             Controls.Add(button15);
             Controls.Add(button13);
             Controls.Add(button14);
@@ -343,8 +344,8 @@
         private Button button13;
         private Button button14;
         private Button button15;
-        private Label label3;
-        private Label label4;
+        private Label CurrentPriceLabel;
+        private Label ProductNameLabel;
         private Button button16;
     }
 }

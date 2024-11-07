@@ -28,12 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "ManagerDashboard";
+            button1 = new Button();
+            button2 = new Button();
+            SuspendLayout();
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 30F);
+            button1.Location = new Point(12, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(640, 1017);
+            button1.TabIndex = 0;
+            button1.Text = "Add/Remove Product";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Segoe UI", 30F);
+            button2.Location = new Point(658, 12);
+            button2.Name = "button2";
+            button2.Size = new Size(640, 1017);
+            button2.TabIndex = 1;
+            button2.Text = "Add/Remove Staff";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // ManagerDashboard
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1904, 1041);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Name = "ManagerDashboard";
+            Text = "ManagerDashboard";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button button1;
+        private Button button2;
     }
 }

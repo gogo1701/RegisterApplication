@@ -59,7 +59,8 @@ namespace RegisterApplication
 
         private void managerButton_Click(object sender, EventArgs e)
         {
-
+            ManagerDashboard form = new ManagerDashboard();
+            form.Show();
         }
     }
 }

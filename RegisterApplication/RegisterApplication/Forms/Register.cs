@@ -23,7 +23,7 @@ namespace RegisterApplication
 
             Product product = productsDAO.getProductFromBarcode(idOfItem);
 
-            if (product != null && product.Name != null) 
+            if (product != null && product.Name != null)
             {
                 int rowIndex = currentOrder.Rows.Add();
                 currentOrder.Rows[rowIndex].Cells["ProductName"].Value = product.Name;
@@ -33,6 +33,10 @@ namespace RegisterApplication
 
                 totalAmount += product.Price;
                 label2.Text = "Total: $" + totalAmount.ToString("F2"); // Assuming totalAmountLabel shows the total amount
+                CurrentPriceLabel.Text = "Price: $" + product.Price.ToString("F2");
+
+                ProductNameLabel.Text = "Product Name: " + product.Name;
+
             }
             else
             {
@@ -149,6 +153,13 @@ namespace RegisterApplication
             {
                 AddProductToList(inputIDBox.Text);
             }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            AddProductToList(inputIDBox.Text);
+            this.ActiveControl = inputIDBox;
+            inputIDBox.Text = "";
         }
     }
 }
