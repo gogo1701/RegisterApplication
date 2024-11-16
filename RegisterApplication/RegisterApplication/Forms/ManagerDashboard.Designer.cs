@@ -30,6 +30,8 @@
         {
             button1 = new Button();
             button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -41,6 +43,7 @@
             button1.TabIndex = 0;
             button1.Text = "Add/Remove Product";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -52,11 +55,34 @@
             button2.Text = "Add/Remove Staff";
             button2.UseVisualStyleBackColor = true;
             // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI", 30F);
+            button3.Location = new Point(1304, 12);
+            button3.Name = "button3";
+            button3.Size = new Size(324, 1017);
+            button3.TabIndex = 2;
+            button3.Text = "Credits";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Font = new Font("Segoe UI", 30F);
+            button4.Location = new Point(1641, 12);
+            button4.Name = "button4";
+            button4.Size = new Size(251, 1017);
+            button4.TabIndex = 3;
+            button4.Text = "Back";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // ManagerDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
+            Controls.Add(button4);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "ManagerDashboard";
@@ -68,5 +94,7 @@
 
         private Button button1;
         private Button button2;
+        private Button button3;
+        private Button button4;
     }
 }
