@@ -20,29 +20,45 @@ namespace RegisterApplication
         public void AddProductToList(string idOfItem)
         {
             ProductsDAO productsDAO = new ProductsDAO();
-
             Product product = productsDAO.getProductFromBarcode(idOfItem);
 
-            if (product != null && product.Name != null)
+            if (product == null || string.IsNullOrEmpty(product.Name))
+            {
+                MessageBox.Show("Product not found.");
+                return;
+            }
+
+            bool productExists = false;
+
+            foreach (DataGridViewRow row in currentOrder.Rows)
+            {
+                if (row.Cells["Barcode"].Value?.ToString() == product.Barcode)
+                {
+                    int currentQuantity = row.Cells["Quantity"].Value == null ? 0 : Convert.ToInt32(row.Cells["Quantity"].Value);
+                    row.Cells["Quantity"].Value = currentQuantity + 1;
+                    row.Cells["Price"].Value = (currentQuantity + 1) * product.Price;
+
+                    productExists = true;
+                    break;
+                }
+            }
+
+            if (!productExists)
             {
                 int rowIndex = currentOrder.Rows.Add();
                 currentOrder.Rows[rowIndex].Cells["ProductName"].Value = product.Name;
                 currentOrder.Rows[rowIndex].Cells["Price"].Value = product.Price;
                 currentOrder.Rows[rowIndex].Cells["Barcode"].Value = product.Barcode;
                 currentOrder.Rows[rowIndex].Cells["Notes"].Value = product.Notes;
-
-                totalAmount += product.Price;
-                label2.Text = "Total: $" + totalAmount.ToString("F2"); // Assuming totalAmountLabel shows the total amount
-                CurrentPriceLabel.Text = "Price: $" + product.Price.ToString("F2");
-
-                ProductNameLabel.Text = "Product Name: " + product.Name;
-
+                currentOrder.Rows[rowIndex].Cells["Quantity"].Value = 1;
             }
-            else
-            {
-                MessageBox.Show("Product not found.");
-            }
+
+            totalAmount += product.Price;
+            label2.Text = "Total: $" + totalAmount.ToString("F2");
+            CurrentPriceLabel.Text = "Price: $" + product.Price.ToString("F2");
+            ProductNameLabel.Text = "Product Name: " + product.Name;
         }
+
         public void EnterFullScreenMode(Form targetForm)
         {
             targetForm.WindowState = FormWindowState.Normal;
@@ -69,6 +85,9 @@ namespace RegisterApplication
             currentOrder.Columns.Add("Price", "Price");
             currentOrder.Columns.Add("Barcode", "Barcode");
             currentOrder.Columns.Add("Notes", "Notes");
+
+            currentOrder.Columns.Add("Quantity", "Quantity");
+
         }
 
         private void Register_Load(object sender, EventArgs e)
