@@ -145,6 +145,7 @@ namespace RegisterApplication
         private void button16_Click(object sender, EventArgs e)
         {
             inputIDBox.Text = "";
+            this.ActiveControl = inputIDBox;
         }
 
         private void inputIDBox_KeyDown(object sender, KeyEventArgs e)
@@ -152,6 +153,7 @@ namespace RegisterApplication
             if (e.KeyCode == Keys.Enter)
             {
                 AddProductToList(inputIDBox.Text);
+                inputIDBox.Text = "";
             }
         }
 

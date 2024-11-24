@@ -86,7 +86,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "ManagerDashboard";
-            Text = "ManagerDashboard";
+            Text = "50112975";
             ResumeLayout(false);
         }
 
